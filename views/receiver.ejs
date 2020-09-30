@@ -4,6 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Encord</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <!-- Font awesome -->
+    <script
+      src="https://kit.fontawesome.com/e9d93636cd.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/style.css" />
 
     <!-- Peer js -->
     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
@@ -17,8 +31,12 @@
     <script src="js/receiver.js" defer></script>
   </head>
   <body>
-    <p>You are in room <%= roomId %></p>
-
-    <div id="cinema"></div>
+    <main class="container my-3 text-center">
+      <h1>Encord</h1>
+      <small class="text-muted">You are viewing stream <%= roomId %></small>
+      <div class="wrapper">
+        <div id="cinema" class="my-3"></div>
+      </div>
+    </main>
   </body>
 </html>

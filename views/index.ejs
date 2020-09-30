@@ -4,6 +4,20 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Encord</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+      integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z"
+      crossorigin="anonymous"
+    />
+    <!-- Font awesome -->
+    <script
+      src="https://kit.fontawesome.com/e9d93636cd.js"
+      crossorigin="anonymous"
+    ></script>
+    <!-- custom css -->
+    <link rel="stylesheet" href="css/style.css" />
 
     <!-- Peer js -->
     <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
@@ -15,11 +29,50 @@
       const PEER_PORT = '<%= process.env.PEER_PORT %>';
     </script>
     <script src="js/index.js" defer></script>
+    <script src="js/copyUrl.js" defer></script>
   </head>
   <body>
-    <h1>Encord</h1>
-    <a href="<%= url.body + url.id %>" target="_blank"
-      ><%= url.body + url.id %></a
-    >
+    <main class="container my-3">
+      <h1 class="text-center">Encord</h1>
+
+      <!-- Nav -->
+      <nav class="nav justify-content-center">
+        <div id="video-stream" class="nav-item">
+          <i class="fas fa-video nav-link"></i>
+        </div>
+        <div id="screenSelect" class="nav-item">
+          <i class="fas fa-desktop nav-link"></i>
+        </div>
+        <div id="audioSelect" class="nav-item">
+          <i class="fas fa-microphone nav-link"></i>
+        </div>
+      </nav>
+
+      <div class="wrapper">
+        <!-- sharable link -->
+        <section class="text-center mt-3">
+          <div class="input-group input-group-sm my-3">
+            <input
+              type="text"
+              class="form-control"
+              value="<%= url.body + url.id %>"
+              id="copyUrlText"
+            />
+            <div class="input-group-append">
+              <button
+                class="btn btn-outline-secondary"
+                type="button"
+                id="copyUrlBtn"
+              >
+                <i class="fas fa-copy"></i>
+              </button>
+            </div>
+          </div>
+        </section>
+
+        <!-- Media container -->
+        <section id="videoStream" class="my-3"></section>
+      </div>
+    </main>
   </body>
 </html>

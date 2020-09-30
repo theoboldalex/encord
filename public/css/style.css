@@ -3,7 +3,7 @@
 }
 
 #videoStream,
-#videoPlayer {
+#cinema {
   border: 1px solid #ddd;
   background-color: #000;
   height: 550px;
