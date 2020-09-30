@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const router = require('./router');
 require('dotenv').config();
 
 //CONFIG//
@@ -7,9 +8,7 @@ app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
 //ROUTES//
-app.get('/', (req, res) => {
-  res.render('index');
-});
+app.use('/', router);
 
 //SERVER//
 const PORT = process.env.PORT || 3000;
