@@ -13,7 +13,7 @@ router.get('/', (req, res) => {
 // @desc get stream from unique room id
 // @route GET /:id
 router.get('/:id', (req, res) => {
-  res.render('reciever', {
+  res.render('receiver', {
     roomId: req.params.id,
   });
 });
