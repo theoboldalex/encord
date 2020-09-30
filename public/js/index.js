@@ -5,7 +5,8 @@ const peer = new Peer(undefined, {
   secure: true,
 });
 
-window.addEventListener('load', videoCall);
+const videoStream = document.getElementById('video-stream');
+videoStream.addEventListener('click', videoCall);
 
 function videoCall() {
   navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
