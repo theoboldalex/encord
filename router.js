@@ -6,7 +6,10 @@ const { v4: uuidV4 } = require('uuid');
 // @route GET /
 router.get('/', (req, res) => {
   res.render('index', {
-    url: `${req.protocol}://${req.get('host')}/${uuidV4()}`,
+    url: {
+      body: `${req.protocol}://${req.get('host')}/`,
+      id: `${uuidV4()}`,
+    },
   });
 });
 
