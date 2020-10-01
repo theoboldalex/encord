@@ -26,21 +26,21 @@ peer.on('call', (call) => {
         track.contentHint = 'text';
       }
     });
-    addVideoStream(myVideo, stream);
+    addVideoStream(myVideo, stream, cinema, false);
   });
 });
 
 // add a stream to the DOM
-function addVideoStream(video, stream) {
+function addVideoStream(video, stream, target, audio) {
   video.srcObject = stream;
   video.addEventListener('loadedmetadata', () => {
-    video.muted = false;
+    video.muted = audio;
     video.play();
   });
-  if (cinema.childNodes.length === 0) {
-    cinema.appendChild(video);
+  if (target.childNodes.length === 0) {
+    target.appendChild(video);
   } else {
-    cinema.innerHTML = '';
-    cinema.appendChild(video);
+    target.innerHTML = '';
+    target.appendChild(video);
   }
 }
