@@ -16,3 +16,15 @@ video {
   width: 100%;
   object-fit: contain;
 }
+
+.make-link {
+  cursor: pointer;
+}
+
+.make-link > i {
+  transition: all 0.3s ease-in-out;
+}
+
+.make-link > i:hover {
+  filter: brightness(300%);
+}
