@@ -1,3 +1,5 @@
+import { addVideoStream } from './functions.js';
+
 // peer config
 const peer = new Peer(ROOM_ID, {
   host: PEER_HOST,
@@ -29,18 +31,3 @@ peer.on('call', (call) => {
     addVideoStream(myVideo, stream, cinema, false);
   });
 });
-
-// add a stream to the DOM
-function addVideoStream(video, stream, target, audio) {
-  video.srcObject = stream;
-  video.addEventListener('loadedmetadata', () => {
-    video.muted = audio;
-    video.play();
-  });
-  if (target.childNodes.length === 0) {
-    target.appendChild(video);
-  } else {
-    target.innerHTML = '';
-    target.appendChild(video);
-  }
-}

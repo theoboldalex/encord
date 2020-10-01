@@ -1,3 +1,5 @@
+import { addVideoStream } from './functions.js';
+
 // peer config
 const sender = new Peer(undefined, {
   host: PEER_HOST,
@@ -7,7 +9,6 @@ const sender = new Peer(undefined, {
 
 const videoStream = document.getElementById('video-stream');
 const screenStream = document.getElementById('screen-stream');
-const audioStream = document.getElementById('audio-stream');
 const mirrorStream = document.getElementById('mirror-stream');
 const audioEnabled = true;
 
@@ -72,18 +73,4 @@ function screenCall() {
     .catch((err) => {
       console.log(err);
     });
-}
-
-function addVideoStream(video, stream, target, audio) {
-  video.srcObject = stream;
-  video.addEventListener('loadedmetadata', () => {
-    video.muted = audio;
-    video.play();
-  });
-  if (target.childNodes.length === 0) {
-    target.appendChild(video);
-  } else {
-    target.innerHTML = '';
-    target.appendChild(video);
-  }
 }
