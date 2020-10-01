@@ -7,59 +7,75 @@ const peer = new Peer(undefined, {
 
 const videoStream = document.getElementById('video-stream');
 const screenStream = document.getElementById('screen-stream');
+const audioStream = document.getElementById('audio-stream');
 const mirrorStream = document.getElementById('mirror-stream');
+const audioEnabled = true;
 
 videoStream.addEventListener('click', videoCall);
 screenStream.addEventListener('click', screenCall);
+audioStream.addEventListener('click', () => {
+  audioEnabled = !audioEnabled;
+  videoCall();
+});
 
 function videoCall() {
   const myStream = document.createElement('video');
 
-  navigator.mediaDevices.getUserMedia({ video: true }).then((stream) => {
-    if (!peer.connections[URL_ID]) {
-      const call = peer.call(URL_ID, stream);
+  navigator.mediaDevices
+    .getUserMedia({ video: true, audio: audioEnabled })
+    .then((stream) => {
+      if (!peer.connections[URL_ID]) {
+        const call = peer.call(URL_ID, stream);
 
-      call.on('error', (err) => {
-        console.log(err);
-      });
+        call.on('error', (err) => {
+          console.log(err);
+        });
 
-      addVideoStream(myStream, stream);
-    } else {
-      peer.connections[URL_ID].pop();
-      const call = peer.call(URL_ID, stream);
+        addVideoStream(myStream, stream);
+      } else {
+        peer.connections[URL_ID].pop();
+        const call = peer.call(URL_ID, stream);
 
-      call.on('error', (err) => {
-        console.log(err);
-      });
+        call.on('error', (err) => {
+          console.log(err);
+        });
 
-      addVideoStream(myStream, stream);
-    }
-  });
+        addVideoStream(myStream, stream);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 function screenCall() {
   const myStream = document.createElement('video');
 
-  navigator.mediaDevices.getDisplayMedia({ video: true }).then((stream) => {
-    if (!peer.connections[URL_ID]) {
-      const call = peer.call(URL_ID, stream);
+  navigator.mediaDevices
+    .getDisplayMedia({ video: true })
+    .then((stream) => {
+      if (!peer.connections[URL_ID]) {
+        const call = peer.call(URL_ID, stream);
 
-      call.on('error', (err) => {
-        console.log(err);
-      });
+        call.on('error', (err) => {
+          console.log(err);
+        });
 
-      addVideoStream(myStream, stream);
-    } else {
-      peer.connections[URL_ID].pop();
-      const call = peer.call(URL_ID, stream);
+        addVideoStream(myStream, stream);
+      } else {
+        peer.connections[URL_ID].pop();
+        const call = peer.call(URL_ID, stream);
 
-      call.on('error', (err) => {
-        console.log(err);
-      });
+        call.on('error', (err) => {
+          console.log(err);
+        });
 
-      addVideoStream(myStream, stream);
-    }
-  });
+        addVideoStream(myStream, stream);
+      }
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 }
 
 function addVideoStream(video, stream) {
