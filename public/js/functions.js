@@ -12,3 +12,8 @@ export function addVideoStream(video, stream, target, audio) {
     target.appendChild(video);
   }
 }
+
+export const mediaConstraints = {
+  audio: true,
+  video: true,
+};

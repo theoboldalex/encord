@@ -1,4 +1,4 @@
-import { addVideoStream } from './functions.js';
+import { addVideoStream, mediaConstraints } from './functions.js';
 
 // peer config
 const peer = new Peer(ROOM_ID, {
@@ -9,6 +9,14 @@ const peer = new Peer(ROOM_ID, {
 
 const cinema = document.getElementById('cinema');
 
+// get receiver stream
+let localStream = null;
+const returnStream = async () => {
+  localStream = await navigator.mediaDevices.getUserMedia(mediaConstraints);
+};
+
+returnStream();
+
 // answer call from sender
 peer.on('call', (call) => {
   // only allow one connection
@@ -18,7 +26,7 @@ peer.on('call', (call) => {
     }
   }
 
-  call.answer();
+  call.answer(localStream);
 
   const myVideo = document.createElement('video');
 
