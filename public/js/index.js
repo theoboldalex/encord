@@ -67,9 +67,21 @@ function screenCall() {
 
   const myStream = document.createElement('video');
 
+  let audioTrack, videoTrack, stream;
+
   navigator.mediaDevices
     .getDisplayMedia(mediaConstraints)
-    .then((stream) => {
+    .then(async (displayStream) => {
+      [videoTrack] = displayStream.getVideoTracks();
+      const audioStream = await navigator.mediaDevices
+        .getUserMedia({ audio: true })
+        .catch((e) => {
+          throw e;
+        });
+      [audioTrack] = audioStream.getAudioTracks();
+
+      stream = new MediaStream([videoTrack, audioTrack]);
+
       // check for existing connections
       if (!sender.connections[URL_ID]) {
         const call = sender.call(URL_ID, stream);
