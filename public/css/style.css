@@ -27,4 +27,5 @@ video {
 
 .make-link > i:hover {
   filter: brightness(300%);
+  transform: scale(1.1);
 }
