@@ -1,4 +1,4 @@
-import { addVideoStream } from './functions.js';
+import { addVideoStream, mediaConstraints } from './functions.js';
 
 // peer config
 const peer = new Peer(ROOM_ID, {
@@ -18,7 +18,9 @@ peer.on('call', (call) => {
     }
   }
 
-  call.answer();
+  navigator.mediaDevices.getUserMedia(mediaConstraints).then((stream) => {
+    call.answer(stream);
+  });
 
   const myVideo = document.createElement('video');
 
