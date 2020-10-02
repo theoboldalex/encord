@@ -31,7 +31,7 @@ function videoCall() {
 
         // get remote user's stream and display
         call.on('stream', (remoteStream) => {
-          addVideoStream(myStream, remoteStream, mirrorStream, true);
+          addVideoStream(myStream, remoteStream, mirrorStream, false);
         });
       } else {
         // if connections exist, kill them before new connection made
@@ -45,7 +45,7 @@ function videoCall() {
 
         // get remote user's stream and display
         call.on('stream', (remoteStream) => {
-          addVideoStream(myStream, remoteStream, mirrorStream, true);
+          addVideoStream(myStream, remoteStream, mirrorStream, false);
         });
       }
     })
@@ -55,6 +55,16 @@ function videoCall() {
 }
 
 function screenCall() {
+  /*
+   * TODO: mix microphone audio track with display video track
+   *
+   * **currently only capturing system audio track**
+   *
+   *  refer to the following link for implementation details;
+   *
+   *  https://github.com/w3c/mediacapture-main/issues/694
+   */
+
   const myStream = document.createElement('video');
 
   navigator.mediaDevices
@@ -71,7 +81,7 @@ function screenCall() {
 
         // get remote user's stream and display
         call.on('stream', (remoteStream) => {
-          addVideoStream(myStream, remoteStream, mirrorStream, true);
+          addVideoStream(myStream, remoteStream, mirrorStream, false);
         });
       } else {
         // if connections exist, kill them before new connection made
@@ -85,7 +95,7 @@ function screenCall() {
 
         // get remote user's stream and display
         call.on('stream', (remoteStream) => {
-          addVideoStream(myStream, remoteStream, mirrorStream, true);
+          addVideoStream(myStream, remoteStream, mirrorStream, false);
         });
       }
     })
