@@ -20,7 +20,7 @@ function videoCall() {
   let audioTrack, videoTrack, stream;
 
   navigator.mediaDevices
-    .getUserMedia(mediaConstraints)
+    .getUserMedia({ video: true })
     .then(async (displayStream) => {
       [videoTrack] = displayStream.getVideoTracks();
 
