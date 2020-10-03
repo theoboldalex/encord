@@ -14,10 +14,10 @@ const mirrorStream = document.getElementById('mirror-stream');
 videoStream.addEventListener('click', videoCall);
 screenStream.addEventListener('click', screenCall);
 
-let audioTrack, videoTrack, stream;
-
 function videoCall() {
   const myStream = document.createElement('video');
+
+  let audioTrack, videoTrack, stream;
 
   navigator.mediaDevices
     .getUserMedia(mediaConstraints)
@@ -79,6 +79,8 @@ function screenCall() {
    */
 
   const myStream = document.createElement('video');
+
+  let audioTrack, videoTrack, stream;
 
   navigator.mediaDevices
     .getDisplayMedia(mediaConstraints)
