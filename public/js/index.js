@@ -10,14 +10,25 @@ const sender = new Peer(undefined, {
 const videoStream = document.getElementById('video-stream');
 const screenStream = document.getElementById('screen-stream');
 const mirrorStream = document.getElementById('mirror-stream');
+const muteStream = document.getElementById('mute-stream');
+
+var audioEnabled = true;
+var audioTrack, videoTrack, stream;
 
 videoStream.addEventListener('click', videoCall);
 screenStream.addEventListener('click', screenCall);
+muteStream.addEventListener('click', muteAudio(stream));
+
+// mute outgoing audio stream
+function muteAudio(stream) {
+	stream.getAudioTracks()[0].enabled = false;
+}
+
 
 function videoCall() {
   const myStream = document.createElement('video');
 
-  let audioTrack, videoTrack, stream;
+//  let audioTrack, videoTrack, stream;
 
   navigator.mediaDevices
     .getUserMedia({ video: true })
