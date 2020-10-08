@@ -13,6 +13,12 @@ export function addVideoStream(video, stream, target, audio) {
   }
 }
 
+ 
+// mute outgoing audio stream
+export function muteAudio(stream) {
+	stream.getAudioTracks()[0].enabled = false;
+}
+
 export const mediaConstraints = {
   audio: true,
   video: true,

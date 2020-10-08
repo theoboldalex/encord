@@ -1,4 +1,4 @@
-import { addVideoStream, mediaConstraints } from './functions.js';
+import { addVideoStream, muteAudio, mediaConstraints } from './functions.js';
 
 // peer config
 const sender = new Peer(undefined, {
@@ -10,14 +10,18 @@ const sender = new Peer(undefined, {
 const videoStream = document.getElementById('video-stream');
 const screenStream = document.getElementById('screen-stream');
 const mirrorStream = document.getElementById('mirror-stream');
+const muteStream = document.getElementById('mute-stream');
+
+var audioEnabled = true;
+var audioTrack, videoTrack, stream;
 
 videoStream.addEventListener('click', videoCall);
 screenStream.addEventListener('click', screenCall);
+muteStream.addEventListener('click', muteAudio(stream));
+
 
 function videoCall() {
   const myStream = document.createElement('video');
-
-  let audioTrack, videoTrack, stream;
 
   navigator.mediaDevices
     .getUserMedia({ video: true })
@@ -68,16 +72,6 @@ function videoCall() {
 }
 
 function screenCall() {
-  /*
-   * TODO: mix microphone audio track with display video track
-   *
-   * **currently only capturing system audio track**
-   *
-   *  refer to the following link for implementation details;
-   *
-   *  https://github.com/w3c/mediacapture-main/issues/694
-   */
-
   const myStream = document.createElement('video');
 
   let audioTrack, videoTrack, stream;
